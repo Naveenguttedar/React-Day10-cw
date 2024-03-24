@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-function TextBox({position}) {
+function TextBox({position, textValue,_setText}) {
     return (
-        <TextArea spellcheck="false" position={position} placeholder={position?"Translation":"Enter the Text"}>
-
+        <TextArea spellCheck="false" position={position} placeholder={position?"Translation":"Enter the text "} value={textValue} onChange={(e)=>_setText(e.target.value)}>
         </TextArea>
     )
 }
