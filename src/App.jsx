@@ -1,15 +1,16 @@
-import { createGlobalStyle } from 'styled-components';
 import React, { useReducer } from 'react';
-import styled from 'styled-components';
-import TextBox from './components/TextBox.jsx'
-import Controls from './components/Controls.jsx'
+import styled, { createGlobalStyle } from 'styled-components';
+import Controls from './components/Controls.jsx';
+import TextBox from './components/TextBox.jsx';
 async function fetchData(src_lang_code, target_lang_code, src_text) {
     const url = 'https://text-translator2.p.rapidapi.com/translate';
+    const API_KEY = import.meta.env.VITE_MY_API_KEY;
+    console.log(API_KEY)
     const options = {
         method: 'POST',
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
-            'X-RapidAPI-Key': '69207b63camsh200647ac1fb2c1bp1b5860jsn4fa4dd6d20a4',
+            'X-RapidAPI-Key': API_KEY,
             'X-RapidAPI-Host': 'text-translator2.p.rapidapi.com'
         },
         body: new URLSearchParams({
@@ -58,6 +59,7 @@ function App() {
     )
     console.log(state)
     const handleFetch = async () => {
+        dispatch({ type: "SET_TRANSLATED_TEXT", text: "Translating..." });
         try {
             const res = await fetchData(state.srcLang, state.targetLang, state.source_text);
             dispatch({ type: "SET_TRANSLATED_TEXT", text: res.data.translatedText });
@@ -81,18 +83,18 @@ function App() {
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
 }
 body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10px;
-  min-height: 100vh;
-  background: #5372F0;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0 10px;
+min-height: 100vh;
+background: #5372F0;
 }`
 const Container = styled.div`
 max-width: 800px;

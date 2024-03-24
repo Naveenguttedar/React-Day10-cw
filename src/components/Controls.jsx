@@ -13,29 +13,29 @@ const indianLanguages = [
   { name: 'Malayalam', code: 'ml' }
 ];
 
-function Controls({_state,_dispatch}) {
+function Controls({ _state, _dispatch }) {
   return (
     <Wrapper >
       <Row >
         <Icons >
-          <i id="from" className="fas fa-volume-up" onClick={()=>confirm("Work is under progress 🚧 !")}></i>
+          <i id="from" className="fas fa-volume-up" onClick={() => confirm("Work is under progress 🚧 !")}></i>
           <i id="from" className="fas fa-copy"></i>
         </Icons>
-        <Select defaultValue={_state.srcLang} onChange={(e)=>_dispatch({type:"SET_SRC_LANG",lang_code:e.target.value})}>
+        <Select defaultValue={_state.srcLang} onChange={(e) => _dispatch({ type: "SET_SRC_LANG", lang_code: e.target.value })}>
           {
             indianLanguages.map(lang => <option key={lang.code} value={lang.code}>{lang.name} </option>)
           }
         </Select>
       </Row>
-      <li ><i className="fas fa-exchange-alt"></i></li>
+      <li ><i className="fas fa-arrow-right exchange"></i></li>
       <Row >
-        <Select defaultValue={_state.targetLang} onChange={(e)=>_dispatch({type:"SET_TARGET_LANG",lang_code:e.target.value})}>
+        <Select defaultValue={_state.targetLang} onChange={(e) => _dispatch({ type: "SET_TARGET_LANG", lang_code: e.target.value })}>
           {
             indianLanguages.map(lang => <option key={lang.code} value={lang.code}>{lang.name} </option>)
           }
         </Select>
-        <Icons  position={"right"}>
-          <i id="to" className="fas fa-volume-up"onClick={()=>confirm("Work is under progress 🚧 !")}></i>
+        <Icons position={"right"}>
+          <i id="to" className="fas fa-volume-up" onClick={() => confirm("Work is under progress 🚧 !")}></i>
           <i id="to" className="fas fa-copy"></i>
         </Icons>
       </Row>
@@ -52,10 +52,12 @@ padding:.5rem 1rem;
 border:1px solid #ccc;
 border-bottom-left-radius:5px;
 border-bottom-right-radius:5px;
+color: #adadad;
 &>.exchange{
 color: #adadad;
 cursor: pointer;
 font-size: 16px;
+border:2px solid red;
 transition: transform 0.2s ease;
 }
 `
